@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AuftragListeActivity extends AppCompatActivity {
 
-    private Toolbar mToolBar;
     private RecyclerView mMeinAuftragList;
 
     private DatabaseReference mMeinAuftragDatabase;

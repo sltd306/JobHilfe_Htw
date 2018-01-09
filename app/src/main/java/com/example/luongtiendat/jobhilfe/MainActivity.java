@@ -156,9 +156,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             profileIntent.putExtra("user_id", mAuth.getCurrentUser().getUid());
             startActivity(profileIntent);
 
-        } else if(id == R.id.main_kontakt_btn) {
-            Intent kontaktIntent = new Intent(MainActivity.this, KontaktActivity.class);
-            startActivity(kontaktIntent);
         } else if (id == R.id.main_auftrag){
             Intent auftragErstellenIntent = new Intent(MainActivity.this,AuftragErstellenActivity.class);
             startActivity(auftragErstellenIntent);

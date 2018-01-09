@@ -50,9 +50,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
     private DatabaseReference mAuftragDatabase,mBewerbungRequestDatabase,mBewerbungDatabase;
     private DatabaseReference mUserDatabase;
-    private DatabaseReference mUserOfferBewerbung;
-    private DatabaseReference mOfferUser;
-    private DatabaseReference mOfferUserDetail;
+    private DatabaseReference mUserOfferDatabase;
     private DatabaseReference mRootRef;
     private DatabaseReference mNotificationDatabase;
     private FirebaseUser mCurrent_User;
@@ -62,10 +60,11 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
     private String mUserId;
     private String mUserId02 ;
     private String newAuftragRequestId;
-    private String mOfferUsername,mOfferUserimage;
-    private String newNotificationId,newBewerbungId;
+    private String newNotificationId;
 
     private RecyclerView mOffenBewerbung;
+
+    private String mBewerbungName, mBewerbungImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +102,6 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
         mAuftragDatabase = FirebaseDatabase.getInstance().getReference().child("Auftrags").child(auftrag_id);
         mBewerbungRequestDatabase = FirebaseDatabase.getInstance().getReference().child("Bewerben_reg");
         mBewerbungDatabase = FirebaseDatabase.getInstance().getReference().child("Request_accept");
-        mUserOfferBewerbung = FirebaseDatabase.getInstance().getReference().child("OfferUser").child(auftrag_id);
-        mOfferUser = FirebaseDatabase.getInstance().getReference().child("OfferUser");
         mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mCurrent_User = FirebaseAuth.getInstance().getCurrentUser();
@@ -131,6 +128,57 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                 mUserId = userId;
                 mUserId02 = mUser;
+                    if (!mUser.equals("default")){
+                        mUserOfferDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(mUserId02);
+                        Toast.makeText(AuftragBewerbenActivity.this,mUser,Toast.LENGTH_SHORT).show();
+
+                        mUserOfferDatabase.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                mBewerbungName = dataSnapshot.child("name").getValue().toString();
+                                mBewerbungImage = dataSnapshot.child("image").getValue().toString();
+
+                                // Darstellen Arbeitnehmen
+                        /*
+                        FirebaseRecyclerAdapter<OfferUser,UserViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<OfferUser, UserViewHolder>(
+                                OfferUser.class,
+                                R.layout.offen_singer_bewerbung_layout,
+                                UserViewHolder.class,
+                                mUserOfferBewerbung
+                        ) {
+                            @Override
+                            protected void populateViewHolder(UserViewHolder viewHolder, OfferUser model, int position) {
+                                viewHolder.setUserImage(model.getImage(),getApplication());
+                                viewHolder.setName(model.getName());
+                                String name = model.getName();
+                                // Toast.makeText(AuftragBewerbenActivity.this,name,Toast.LENGTH_SHORT).show();
+                                final String user_offer_requeset_id = getRef(position).getKey();
+
+                                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent offerUserProfileIntent = new Intent(AuftragBewerbenActivity.this,UserSettingsActivity.class);
+                                        offerUserProfileIntent.putExtra("user_id",user_offer_requeset_id);
+                                        startActivity(offerUserProfileIntent);
+                                    }
+                                });
+
+
+                            }
+                        };
+
+                        mOffenBewerbung.setAdapter(firebaseRecyclerAdapter);
+                        */
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
 
                 mTitel.setText(titel);
                 mArbeitOrt.setText(arbeit_ort);
@@ -152,6 +200,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                         mArbeitGeber.setText(display_name);
                         mUserPhone.setText(display_phone);
                         mUseremail.setText(display_email);
+
 
                         /// Mein Auftrag
 
@@ -208,11 +257,11 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                         }else {
                             ///  nicht Mein Auftrag
 
-                            mBewerbungRequestDatabase.child(auftrag_id).addValueEventListener(new ValueEventListener() {
+                            mBewerbungRequestDatabase.child(mCurrent_User.getUid()).child(mUserId).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.hasChild(mUser)){
-                                        String req_type = dataSnapshot.child("request_type").getValue().toString();
+                                    if (dataSnapshot.hasChild(auftrag_id)){
+                                        String req_type = dataSnapshot.child(auftrag_id).child("request_type").getValue().toString();
 
                                         if (req_type.equals("sent_requeset")){
                                             mBewerben_stats = "req_sent";
@@ -245,36 +294,6 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
             }
         });
-
-
-        FirebaseRecyclerAdapter<OfferUser,UserViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<OfferUser, UserViewHolder>(
-                OfferUser.class,
-                R.layout.offen_singer_bewerbung_layout,
-                UserViewHolder.class,
-                mUserOfferBewerbung
-        ) {
-            @Override
-            protected void populateViewHolder(UserViewHolder viewHolder, OfferUser model, int position) {
-                viewHolder.setUserImage(model.getImage(),getApplication());
-                viewHolder.setName(model.getName());
-                String name = model.getName();
-                // Toast.makeText(AuftragBewerbenActivity.this,name,Toast.LENGTH_SHORT).show();
-                final String user_offer_requeset_id = getRef(position).getKey();
-
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent offerUserProfileIntent = new Intent(AuftragBewerbenActivity.this,UserSettingsActivity.class);
-                        offerUserProfileIntent.putExtra("user_id",user_offer_requeset_id);
-                        startActivity(offerUserProfileIntent);
-                    }
-                });
-
-
-            }
-        };
-
-        mOffenBewerbung.setAdapter(firebaseRecyclerAdapter);
 
 
         mBewerbung.setOnClickListener(new View.OnClickListener() {
@@ -373,10 +392,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                     kontaktMap.put("Kontakt/" + mUserId02 + "/" + mCurrent_User.getUid() + "/date",currentDate);
 
                     kontaktMap.put("Bewerben_reg/" + mCurrent_User.getUid() + "/" + mUserId02 + "/" + auftrag_id,null);
-                    kontaktMap.put("Bewerben_reg/" + mUserId02 + "/" + mUserId02 + "/" + mCurrent_User.getUid(),null);
-
-                    kontaktMap.put("Request_accept/" + mCurrent_User.getUid() + "/" + mUserId02 + "/" + auftrag_id,currentDate);
-                    kontaktMap.put("Request_accept/" + mUserId02 + "/" + mCurrent_User.getUid() + "/" + auftrag_id,currentDate);
+                    kontaktMap.put("Bewerben_reg/" + mUserId02 + "/" + "/" + mCurrent_User.getUid() + "/" + auftrag_id ,null);
 
                     mRootRef.updateChildren(kontaktMap, new DatabaseReference.CompletionListener() {
                         @Override

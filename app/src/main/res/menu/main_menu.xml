@@ -11,10 +11,6 @@
         android:id="@+id/main_auftrag_liste"
         android:title="Auftrag Liste" />
     <item
-        android:id="@+id/main_kontakt_btn"
-        android:title="Kontakt Liste"
-        android:icon="@drawable/ic_assignment_ind_black_24dp"/>
-    <item
         android:id="@+id/main_logout_btn"
         android:title="Abmelden" />
 

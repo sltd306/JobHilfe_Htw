@@ -44,17 +44,6 @@
             android:name=".StatusActivity"
             android:label="@string/title_activity_status"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".KontaktActivity" />
-        <activity
-            android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.luongtiendat.jobhilfe.model.Lapitchat" />
-
-                <category android:name="android.intent.category.DEFAULT " />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ChatActivity"
             android:parentActivityName=".MainActivity" />
@@ -68,7 +57,7 @@
             android:label="@string/title_activity_auftrag_liste"
             android:theme="@style/AppTheme" />
         <activity android:name=".AuftragBewerbenActivity" />
-        <activity android:name=".EditAuftragActivity"></activity>
+        <activity android:name=".EditAuftragActivity" />
     </application>
 
 </manifest>

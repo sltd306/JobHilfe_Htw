@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JobHilfe</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_status">StatusActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="title_activity_user_profile_edit">UserProfileEditActivity</string>
+    <string name="title_activity_auftrag_liste">AuftragListeActivity</string>
+
+</resources>

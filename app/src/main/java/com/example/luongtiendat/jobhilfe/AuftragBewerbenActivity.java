@@ -37,8 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AuftragBewerbenActivity extends AppCompatActivity {
 
-    //TESTEN GIT
-    //NOCH TESTEN
+    //TESTEN 2
 
     private static final int MAX_LENGTH = 10;
     private TextView mTitel,mAuftragReferen,mArbeitGeber,mArbeitOrt,mArbeitZeit,mStellenBeschreibung,

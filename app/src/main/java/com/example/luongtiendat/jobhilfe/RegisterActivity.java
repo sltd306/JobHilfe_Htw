@@ -113,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("name", display_name);
-                    userMap.put("status", "Hi there I'm using Lapit Chat App.");
+                    userMap.put("status", "Hi there I'm using JobHilfe App. =)");
                     userMap.put("image", "default");
                     userMap.put("thumb_image", "default");
                     userMap.put("device_token", device_token);
@@ -121,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userMap.put("phone","default");
                     userMap.put("auftrag_count","0");
                     userMap.put("bewertung_count","0");
+                    userMap.put("bewertung_value","0");
 
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {

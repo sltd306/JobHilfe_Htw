@@ -76,7 +76,8 @@ public class AuftragListeActivity extends AppCompatActivity {
                         String userId = dataSnapshot.child("userId").getValue().toString();
 
                         if (mAuth.getCurrentUser().getUid().equals(userId)){
-                            viewHolder.setBackGroundColor(255); // tim them mau
+                            viewHolder.setBackGroundColor(-16711681); // tim them mau
+
                         }
                     }
 
@@ -119,7 +120,7 @@ public class AuftragListeActivity extends AppCompatActivity {
         }
 
         public  void setDatum (String datum){
-            TextView auftragDatumView = mView.findViewById(R.id.auftrag_view_datum);
+            TextView auftragDatumView = mView.findViewById(R.id.auftrag_view_status);
             auftragDatumView.setText(datum);
         }
         public  void setArbeitOrt (String arbeit_ort){
@@ -128,6 +129,7 @@ public class AuftragListeActivity extends AppCompatActivity {
         }
         public  void setBackGroundColor (int color){
             RelativeLayout relativeLayout = mView.findViewById(R.id.auftrag_view_layout);
+            relativeLayout.setBackgroundResource(R.drawable.auftrag_detail_backgound);
             relativeLayout.setBackgroundColor(color);
         }
     }

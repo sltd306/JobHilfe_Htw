@@ -14,7 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.luongtiendat.jobhilfe.Model.Bewerbung;
 import com.example.luongtiendat.jobhilfe.Model.OfferUser;
+import com.example.luongtiendat.jobhilfe.Model.Users;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,7 +51,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
     private Button mCancenRequest;
 
     private DatabaseReference mAuftragDatabase,mBewerbungRequestDatabase,mBewerbungDatabase;
-    private DatabaseReference mUserDatabase;
+    private DatabaseReference mUserDatabase,mUserDatabase2;
     private DatabaseReference mUserOfferDatabase;
     private DatabaseReference mRootRef;
     private DatabaseReference mNotificationDatabase;
@@ -64,7 +66,9 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
     private RecyclerView mOffenBewerbung;
 
-    private String mBewerbungName, mBewerbungImage;
+    private String mUserName01,mUserName02;
+
+    private String mAuftrag_Count,mAuftrag_Count1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +115,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
         mBewerben_stats ="not_bewerben";
 
-        DatabaseReference newNotificationref = mRootRef.child("notifications").child(mCurrent_User.getUid()).push();
-        newNotificationId = newNotificationref.getKey();
+        mUserOfferDatabase = FirebaseDatabase.getInstance().getReference().child("Offer").child(auftrag_id);
 
         mAuftragDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,60 +128,18 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                 String vergutung = dataSnapshot.child("vergutung").getValue().toString();
                 final String userId = dataSnapshot.child("userId").getValue().toString();
                 final String mUser = dataSnapshot.child("mUser").getValue().toString();
+                final String status =  dataSnapshot.child("status").getValue().toString();
 
+                final Integer status_int = Integer.parseInt(status);
+
+                /*
+                status_int = status_int +10 ;
+                String status_string = new Integer(status_int).toString();
+                Toast.makeText(AuftragBewerbenActivity.this, status_string, Toast.LENGTH_SHORT).show();
+                */
                 mUserId = userId;
                 mUserId02 = mUser;
-                    if (!mUser.equals("default")){
-                        mUserOfferDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(mUserId02);
-                        Toast.makeText(AuftragBewerbenActivity.this,mUser,Toast.LENGTH_SHORT).show();
 
-                        mUserOfferDatabase.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                mBewerbungName = dataSnapshot.child("name").getValue().toString();
-                                mBewerbungImage = dataSnapshot.child("image").getValue().toString();
-
-                                // Darstellen Arbeitnehmen
-                        /*
-                        FirebaseRecyclerAdapter<OfferUser,UserViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<OfferUser, UserViewHolder>(
-                                OfferUser.class,
-                                R.layout.offen_singer_bewerbung_layout,
-                                UserViewHolder.class,
-                                mUserOfferBewerbung
-                        ) {
-                            @Override
-                            protected void populateViewHolder(UserViewHolder viewHolder, OfferUser model, int position) {
-                                viewHolder.setUserImage(model.getImage(),getApplication());
-                                viewHolder.setName(model.getName());
-                                String name = model.getName();
-                                // Toast.makeText(AuftragBewerbenActivity.this,name,Toast.LENGTH_SHORT).show();
-                                final String user_offer_requeset_id = getRef(position).getKey();
-
-                                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent offerUserProfileIntent = new Intent(AuftragBewerbenActivity.this,UserSettingsActivity.class);
-                                        offerUserProfileIntent.putExtra("user_id",user_offer_requeset_id);
-                                        startActivity(offerUserProfileIntent);
-                                    }
-                                });
-
-
-                            }
-                        };
-
-                        mOffenBewerbung.setAdapter(firebaseRecyclerAdapter);
-                        */
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }
 
                 mTitel.setText(titel);
                 mArbeitOrt.setText(arbeit_ort);
@@ -196,15 +157,49 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                         String display_name = dataSnapshot.child("name").getValue().toString();
                         String display_phone = dataSnapshot.child("phone").getValue().toString();
                         String display_email = dataSnapshot.child("email").getValue().toString();
+                        final String auftrag_count = dataSnapshot.child("auftrag_count").getValue().toString();
+
+
+                        mUserName01 = display_name;
+
+                        Integer auctrag_count_int = Integer.parseInt(auftrag_count);
+                        auctrag_count_int = auctrag_count_int +1;
+                        String auctrag_count_string = new Integer(auctrag_count_int).toString();
+                        mAuftrag_Count = auctrag_count_string;
 
                         mArbeitGeber.setText(display_name);
                         mUserPhone.setText(display_phone);
                         mUseremail.setText(display_email);
 
+                            /// Mein Auftrag
+                         if(mCurrent_User.getUid().equals(userId)){
+                             if (!mUser.equals("default")){
+                                 mUserDatabase2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser);
 
-                        /// Mein Auftrag
+                                 mUserDatabase2.addValueEventListener(new ValueEventListener() {
+                                     @Override
+                                     public void onDataChange(DataSnapshot dataSnapshot) {
+                                         String name = dataSnapshot.child("name").getValue().toString();
 
-                        if(mCurrent_User.getUid().equals(userId)){
+                                         mUserName02 = name;
+                                         final String auftrag_count = dataSnapshot.child("auftrag_count").getValue().toString();
+
+                                         Integer auctrag_count_int = Integer.parseInt(auftrag_count);
+                                         auctrag_count_int = auctrag_count_int +1;
+                                         String auctrag_count_string = new Integer(auctrag_count_int).toString();
+                                         mAuftrag_Count1 = auctrag_count_string;
+
+                                     }
+
+                                     @Override
+                                     public void onCancelled(DatabaseError databaseError) {
+
+                                     }
+                                 });
+                             }
+
+
+
                             mBewerbungRequestDatabase.child(mCurrent_User.getUid()).child(mUserId02).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -224,19 +219,45 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 if (dataSnapshot.hasChild(auftrag_id)){
                                                    // String req_type = dataSnapshot.child(auftrag_id).child("request_type").getValue().toString(); //
-                                                    mBewerben_stats = "request_accept";
-                                                    mBewerbung.setText("Cancel This Request");
+                                                    mBewerben_stats = "auftrag_beworben";
+                                                    mBewerbung.setText("Denin this Bewerbung");
+                                                    mBewerbung.setEnabled(true);
 
-                                                    mCancenRequest.setVisibility(View.INVISIBLE);
-                                                    mCancenRequest.setEnabled(false);
+                                                    mCancenRequest.setVisibility(View.VISIBLE);
+                                                    mCancenRequest.setText("Auftrag Beenden");
+                                                    mCancenRequest.setEnabled(true);
 
-                                                }else
-                                                {
+                                                } else if ( status_int == 0){
                                                     mBewerbung.setText("Auftrag Bearbeiten");
                                                     mBewerben_stats = "edit_auftrag";
                                                     mCancenRequest.setVisibility(View.INVISIBLE);
                                                     mCancenRequest.setEnabled(false);
+                                                }
+                                                else if (status_int== 1){
+                                                    //mBewerben_stats.equals("finish_request"
+                                                    mBewerbung.setText("Bewerten Abgeben");
+                                                    mBewerben_stats = "bewerten";
+                                                    mCancenRequest.setVisibility(View.INVISIBLE);
+                                                    mCancenRequest.setEnabled(false);
 
+                                                } else if (status_int == 3){
+                                                    //mBewerben_stats.equals("bewerten"
+                                                    mBewerbung.setText("Bewerten Abgeben");
+                                                    mCancenRequest.setVisibility(View.INVISIBLE);
+                                                    mCancenRequest.setEnabled(false);
+                                                }
+
+                                                else {/*
+                                                    mBewerbung.setText("Auftrag Bearbeiten");
+                                                    mBewerben_stats = "edit_auftrag";
+                                                    mCancenRequest.setVisibility(View.INVISIBLE);
+                                                    mCancenRequest.setEnabled(false);
+                                                    */
+                                                    mBewerbung.setEnabled(false);
+                                                    mBewerbung.setVisibility(View.INVISIBLE);
+
+                                                    mCancenRequest.setEnabled(false);
+                                                    mCancenRequest.setVisibility(View.INVISIBLE);
                                                 }
                                             }
 
@@ -255,8 +276,31 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                 }
                             });
                         }else {
-                            ///  nicht Mein Auftrag
 
+
+                            ///  nicht Mein Auftrag
+                             /*
+                             mUserDatabase2 = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser);
+
+                             mUserDatabase2.addValueEventListener(new ValueEventListener() {
+                                 @Override
+                                 public void onDataChange(DataSnapshot dataSnapshot) {
+                                     String name = dataSnapshot.child("name").getValue().toString();
+
+                                     mUserName02 = name;
+                                     final String auftrag_count = dataSnapshot.child("auftrag_count").getValue().toString();
+
+                                     Integer auctrag_count_int = Integer.parseInt(auftrag_count);
+                                     auctrag_count_int = auctrag_count_int +1;
+                                     String auctrag_count_string = new Integer(auctrag_count_int).toString();
+                                     mAuftrag_Count1 = auctrag_count_string;
+                                 }
+
+                                 @Override
+                                 public void onCancelled(DatabaseError databaseError) {
+
+                                 }
+                             });*/
                             mBewerbungRequestDatabase.child(mCurrent_User.getUid()).child(mUserId).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -270,6 +314,30 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                             mCancenRequest.setVisibility(View.INVISIBLE);
                                             mCancenRequest.setEnabled(false);
                                         }
+                                    }else if (status_int == 0){
+                                        mBewerben_stats ="not_bewerben";
+                                    }
+                                    else if(status_int == 1){
+                                            mBewerben_stats = "auftrag_zuruck";
+                                            mBewerbung.setText("Bewerbung zurückzihen");
+                                            mBewerbung.setEnabled(true);
+
+                                            mCancenRequest.setVisibility(View.INVISIBLE);
+                                            mCancenRequest.setEnabled(false);
+                                    }else if (status_int ==4 ){
+                                            mBewerben_stats = "bewerten";
+                                            mBewerbung.setText("Bewerten Abgeben");
+
+                                            mCancenRequest.setVisibility(View.INVISIBLE);
+                                            mCancenRequest.setEnabled(false);
+                                    }
+                                    else {
+                                             //mBewerben_stats ="not_bewerben";
+                                        mBewerbung.setEnabled(false);
+                                        mBewerbung.setVisibility(View.INVISIBLE);
+
+                                        mCancenRequest.setEnabled(false);
+                                        mCancenRequest.setVisibility(View.INVISIBLE);
                                     }
                                 }
 
@@ -308,10 +376,12 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                 if(mBewerben_stats.equals("not_bewerben")){
 
+                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId).push();
+                    newNotificationId = newNotificationref.getKey();
 
                     HashMap<String, String> notificationData = new HashMap<>();
-                    notificationData.put("from", mCurrent_User.getUid());
-                    notificationData.put("type", "request");
+                    notificationData.put("from", mUserName02);
+                    notificationData.put("type", "send request an ihre Auftrag: " + auftrag_id);
 
                     Map requestMap = new HashMap();
                     requestMap.put("Bewerben_reg/" + mCurrent_User.getUid() + "/" + mUserId + "/"
@@ -337,7 +407,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                             } else {
 
                                 mBewerben_stats = "req_sent";
-                                mBewerbung.setText("Cancel Friend Request");
+                                mBewerbung.setText("Cancel This Request");
 
                             }
 
@@ -358,8 +428,16 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
+                                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId).push();
+                                    newNotificationId = newNotificationref.getKey();
+
+                                    HashMap<String, String> notificationData = new HashMap<>();
+                                    notificationData.put("from", mUserName02);
+                                    notificationData.put("type", "request zurück auf Ihre Auftrag :" + auftrag_id);
+
                                     Map requestMap = new HashMap();
                                     requestMap.put("Auftrags/" + auftrag_id + "/" +"mUser","default");
+                                    requestMap.put("notifications/" + mUserId + "/" + newNotificationId, notificationData);
                                     mRootRef.updateChildren(requestMap, new DatabaseReference.CompletionListener() {
                                         @Override
                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -387,12 +465,24 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                 if(mBewerben_stats.equals("req_received")){
                     final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
 
+                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId02).push();
+                    newNotificationId = newNotificationref.getKey();
+
+                    HashMap<String, String> notificationData = new HashMap<>();
+                    notificationData.put("from", mUserName01);
+                    notificationData.put("type", "accept ihre Bewerben an Auftrag :" + auftrag_id);
+
                     Map kontaktMap = new HashMap();
                     kontaktMap.put("Kontakt/" + mCurrent_User.getUid() + "/" + mUserId02 + "/date",currentDate);
                     kontaktMap.put("Kontakt/" + mUserId02 + "/" + mCurrent_User.getUid() + "/date",currentDate);
 
                     kontaktMap.put("Bewerben_reg/" + mCurrent_User.getUid() + "/" + mUserId02 + "/" + auftrag_id,null);
                     kontaktMap.put("Bewerben_reg/" + mUserId02 + "/" + "/" + mCurrent_User.getUid() + "/" + auftrag_id ,null);
+
+                    kontaktMap.put("Request_accept/" + mCurrent_User.getUid() + "/" + mUserId02 + "/"+auftrag_id +"/request_type","request_accept" );
+
+                    kontaktMap.put("Auftrags/" + auftrag_id + "/" + "status","1");
+                    kontaktMap.put("notifications/" + mUserId02 + "/" + newNotificationId, notificationData);
 
                     mRootRef.updateChildren(kontaktMap, new DatabaseReference.CompletionListener() {
                         @Override
@@ -403,8 +493,9 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                 mBewerbung.setText("Denin this Bewerbung");
                                 mBewerbung.setEnabled(true);
 
-                                mCancenRequest.setVisibility(View.INVISIBLE);
-                                mCancenRequest.setEnabled(false);
+                                mCancenRequest.setVisibility(View.VISIBLE);
+                                mCancenRequest.setText("Auftrag Beenden");
+                                mCancenRequest.setEnabled(true);
 
                             }else {
                                 String error = databaseError.getMessage();
@@ -420,6 +511,14 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                 // -------------Auftrag ablehnen
 
                 if (mBewerben_stats.equals("auftrag_beworben")){
+
+                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId02).push();
+                    newNotificationId = newNotificationref.getKey();
+
+                    HashMap<String, String> notificationData = new HashMap<>();
+                    notificationData.put("from", mUserName01);
+                    notificationData.put("type", "denin ihre Bewerben an Auftrag :" + auftrag_id);
+
                     Map unkonkaktMap = new HashMap();
                     unkonkaktMap.put("Kontakt/" +  mCurrent_User.getUid() + "/" + mUserId02 ,null);
                     unkonkaktMap.put("Kontakt/" +  mUserId02 + "/" + mCurrent_User.getUid(),null);
@@ -428,13 +527,60 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                     unkonkaktMap.put("Request_accept/" + mUserId02 + "/" + mCurrent_User.getUid() + "/" + auftrag_id,null);
 
                     unkonkaktMap.put("Auftrags/" + auftrag_id + "/" +"mUser","default");
+                    unkonkaktMap.put("Auftrags/" + auftrag_id + "/" +"status","0");
+
+                    unkonkaktMap.put("notifications/" + mUserId02 + "/" + newNotificationId, notificationData);
+
+                    mRootRef.updateChildren(unkonkaktMap, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null){
+                                mBewerben_stats = "edit_auftrag";
+                                mBewerbung.setText("Auftrag Bearbeiten");
+
+                                mCancenRequest.setVisibility(View.INVISIBLE);
+                                mCancenRequest.setEnabled(false);
+                            }else{
+                                String error = databaseError.getMessage();
+
+                                Toast.makeText(AuftragBewerbenActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                            mBewerbung.setEnabled(true);
+                        }
+                    });
+
+
+                }
+
+                // -------------Auftrag zurück
+
+                if (mBewerben_stats.equals("auftrag_zuruck")){
+
+                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId).push();
+                    newNotificationId = newNotificationref.getKey();
+
+                    HashMap<String, String> notificationData = new HashMap<>();
+                    notificationData.put("from", mUserName02);
+                    notificationData.put("type", "bewerben zurück ihre Bewerben an Auftrag :" + auftrag_id);
+
+                    Map unkonkaktMap = new HashMap();
+                    unkonkaktMap.put("Kontakt/" +  mCurrent_User.getUid() + "/" + mUserId ,null);
+                    unkonkaktMap.put("Kontakt/" +  mUserId + "/" + mCurrent_User.getUid(),null);
+
+                    unkonkaktMap.put("Request_accept/" + mCurrent_User.getUid() + "/" + mUserId + "/" + auftrag_id,null);
+                    unkonkaktMap.put("Request_accept/" + mUserId + "/" + mCurrent_User.getUid() + "/" + auftrag_id,null);
+
+                    unkonkaktMap.put("Auftrags/" + auftrag_id + "/" +"mUser","default");
+                    unkonkaktMap.put("Auftrags/" + auftrag_id + "/" +"status","0");
+
+                    unkonkaktMap.put("notifications/" + mUserId + "/" + newNotificationId, notificationData);
 
                     mRootRef.updateChildren(unkonkaktMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null){
                                 mBewerben_stats = "not_bewerben";
-                                mBewerbung.setText("Send Bewerbung Request");
+                                mBewerbung.setText("Bewerben");
 
                                 mCancenRequest.setVisibility(View.INVISIBLE);
                                 mCancenRequest.setEnabled(false);
@@ -470,10 +616,163 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                 }
 
+                // --- Auftrag Fertig
+                if (mBewerben_stats.equals("finish_request")){
+
+                    DatabaseReference newNotificationref = mRootRef.child("notifications").child(mUserId02).push();
+                    newNotificationId = newNotificationref.getKey();
+
+                    HashMap<String, String> notificationData = new HashMap<>();
+                    notificationData.put("from", mUserName01);
+                    notificationData.put("type", auftrag_id + " ist abgeschlossen");
+
+                    Map auftragFertigMap = new HashMap ();
+                    auftragFertigMap.put("Users/" + mCurrent_User.getUid() + "/" + "auftrag_count" , mAuftrag_Count);
+                    auftragFertigMap.put("Users/" + mUserId02 + "/" + "auftrag_count" , mAuftrag_Count1);
+                    auftragFertigMap.put("Auftrags/" + auftrag_id + "/" + "status","3");
+                    auftragFertigMap.put("Request_accept/" + mCurrent_User.getUid() + "/" + mUserId02 + "/" + auftrag_id,null);
+                    auftragFertigMap.put("notifications/" + mUserId02 + "/" + newNotificationId, notificationData);
+
+                    mRootRef.updateChildren(auftragFertigMap, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null){
+                                mBewerben_stats = "bewerten";
+                                mBewerbung.setText("Bewerten Abgeben");
+
+                                mCancenRequest.setVisibility(View.INVISIBLE);
+                                mCancenRequest.setEnabled(false);
+                            }else{
+                                String error = databaseError.getMessage();
+
+                                Toast.makeText(AuftragBewerbenActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                            mBewerbung.setEnabled(true);
+                        }
+                    });
+                }
+
+                if (mBewerben_stats.equals("bewerten")){
+
+                    Intent bewertenIntent = new Intent(AuftragBewerbenActivity.this,BewertungActivity.class);
+                    bewertenIntent.putExtra("arbeitgeber",mUserId);
+                    bewertenIntent.putExtra("arbeinehmer",mUserId02);
+                    bewertenIntent.putExtra("auftragid",auftrag_id);
+                    bewertenIntent.putExtra("arbeitgeber_name",mUserName01);
+                    bewertenIntent.putExtra("arbeitnehmer_name",mUserName02);
+                    startActivity(bewertenIntent);
+                    mBewerbung.setEnabled(true);
+                }
+
             }
         });
 
+        mCancenRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                if(mBewerben_stats.equals("req_received")){
+                    mBewerbungRequestDatabase.child(mCurrent_User.getUid()).child(mUserId02).child(auftrag_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            mBewerbungRequestDatabase.child(mUserId02).child(mCurrent_User.getUid()).child(auftrag_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Map requestMap = new HashMap();
+                                    requestMap.put("Auftrags/" + auftrag_id + "/" +"mUser","default");
+                                    mRootRef.updateChildren(requestMap, new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                            if (databaseError != null){
+                                                String error = databaseError.getMessage();
+
+                                                Toast.makeText(AuftragBewerbenActivity.this, error, Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                    mBewerben_stats = "not_bewerben";
+                                    mBewerbung.setText("Send Bewerbung Request");
+                                    mBewerbung.setEnabled(true);
+                                    mCancenRequest.setVisibility(View.INVISIBLE);
+                                    mCancenRequest.setEnabled(false);
+                                }
+                            });
+                        }
+                    });
+                }
+
+                else{
+
+
+                    mCancenRequest.setEnabled(true);
+                    Map auftragFertigMap = new HashMap ();
+                    auftragFertigMap.put("Users/" + mCurrent_User.getUid() + "/" + "auftrag_count" , mAuftrag_Count);
+                    auftragFertigMap.put("Users/" + mUserId02 + "/" + "auftrag_count" , mAuftrag_Count1);
+                    auftragFertigMap.put("Auftrags/" + auftrag_id + "/" + "status","3");
+                    auftragFertigMap.put("Request_accept/" + mCurrent_User.getUid() + "/" + mUserId02 + "/" + auftrag_id,null);
+
+                    mRootRef.updateChildren(auftragFertigMap, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null){
+                                mBewerben_stats = "bewerten";
+                                mBewerbung.setText("Bewerten Abgeben");
+
+                                mCancenRequest.setVisibility(View.INVISIBLE);
+                                mCancenRequest.setEnabled(false);
+                            }else{
+                                String error = databaseError.getMessage();
+
+                                Toast.makeText(AuftragBewerbenActivity.this, error, Toast.LENGTH_SHORT).show();
+                            }
+                            mBewerbung.setEnabled(true);
+                        }
+                    });
+
+                }
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<OfferUser,UserViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<OfferUser, UserViewHolder>(
+                OfferUser.class,
+                R.layout.offen_singer_bewerbung_layout,
+                UserViewHolder.class,
+                mUserOfferDatabase
+        ) {
+            @Override
+            protected void populateViewHolder(UserViewHolder viewHolder, OfferUser model, int position) {
+                viewHolder.setUserImage(model.getImage(),getApplication());
+                viewHolder.setName(model.getName());
+                String name = model.getName();
+
+                Toast.makeText(AuftragBewerbenActivity.this,name,Toast.LENGTH_SHORT).show();
+
+                // Toast.makeText(AuftragBewerbenActivity.this,name,Toast.LENGTH_SHORT).show();
+                final String user_offer_requeset_id = getRef(position).getKey();
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent offerUserProfileIntent = new Intent(AuftragBewerbenActivity.this,UserSettingsActivity.class);
+                        offerUserProfileIntent.putExtra("user_id",user_offer_requeset_id);
+                        startActivity(offerUserProfileIntent);
+                    }
+                });
+
+
+            }
+        };
+        mOffenBewerbung.setAdapter(firebaseRecyclerAdapter);
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder{
@@ -485,7 +784,6 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
             mView =itemView;
         }
-
         public  void setName (String name){
             TextView user_offer_request_name = mView.findViewById(R.id.user_offer_name);
             user_offer_request_name.setText(name);

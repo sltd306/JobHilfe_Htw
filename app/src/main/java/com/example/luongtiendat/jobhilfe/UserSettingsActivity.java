@@ -81,7 +81,7 @@ public class UserSettingsActivity extends AppCompatActivity {
                 String email = dataSnapshot.child("email").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
                 String auftrag_count = dataSnapshot.child("auftrag_count").getValue().toString();
-                String bewertung_count = dataSnapshot.child("bewertung_count").getValue().toString();
+                String bewertung_count = dataSnapshot.child("bewertung_value").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
                 //String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 

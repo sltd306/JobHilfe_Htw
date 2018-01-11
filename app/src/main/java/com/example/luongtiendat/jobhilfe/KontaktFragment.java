@@ -129,7 +129,7 @@ public class KontaktFragment extends Fragment {
 
                                         //Click Event for each item.
                                         if (i == 0) {
-                                            Toast.makeText(getContext(),"1",Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(getContext(),"1",Toast.LENGTH_LONG).show();
 
                                             Intent profileIntent = new Intent(getContext(), UserSettingsActivity.class);
                                             profileIntent.putExtra("user_id", list_user_id);
@@ -138,7 +138,7 @@ public class KontaktFragment extends Fragment {
                                         }
 
                                         if (i == 1) {
-                                            Toast.makeText(getContext(),"2",Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(getContext(),"2",Toast.LENGTH_LONG).show();
 
                                             Intent chatIntent = new Intent(getContext(), ChatActivity.class);
                                             chatIntent.putExtra("user_id", list_user_id);

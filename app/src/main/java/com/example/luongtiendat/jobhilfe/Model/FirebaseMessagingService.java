@@ -14,7 +14,6 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
-
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -46,8 +45,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 );
 
         mBuilder.setContentIntent(resultPendingIntent);
-
-
 
 
         int mNotificationId = (int) System.currentTimeMillis();

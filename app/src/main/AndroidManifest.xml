@@ -51,13 +51,16 @@
             android:name=".UserProfileEditActivity"
             android:label="@string/title_activity_user_profile_edit"
             android:theme="@style/AppTheme" />
-        <activity android:name=".AuftragErstellenActivity" />
+        <activity android:name=".AuftragErstellenActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name=".AuftragListeActivity"
             android:label="@string/title_activity_auftrag_liste"
             android:theme="@style/AppTheme" />
         <activity android:name=".AuftragBewerbenActivity" />
         <activity android:name=".EditAuftragActivity" />
+        <activity android:name=".BewertungActivity" />
+        <activity android:name=".BewertungListeActivity"></activity>
     </application>
 
 </manifest>

@@ -162,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.main_auftrag_liste){
             Intent auftragErstellenIntent = new Intent(MainActivity.this,AuftragListeActivity.class);
             startActivity(auftragErstellenIntent);
+        } else if (id == R.id.main_bewertung_liste){
+            Intent BewertungIntent = new Intent(MainActivity.this,BewertungListeActivity.class);
+            startActivity(BewertungIntent);
         }else if(id == R.id.main_logout_btn) {
             FirebaseAuth.getInstance().signOut();
             sendToStart();

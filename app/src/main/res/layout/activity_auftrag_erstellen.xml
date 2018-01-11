@@ -151,7 +151,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Beginn Arbeit"
-                        android:inputType="datetime"/>
+                        />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -185,7 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Ihre Arbeit Zeit"
-                        android:inputType="time"/>
+                        />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -219,7 +219,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Ihre Vergütung"
-                        android:inputType="number" />
+                         />
                 </android.support.design.widget.TextInputLayout>
 
 

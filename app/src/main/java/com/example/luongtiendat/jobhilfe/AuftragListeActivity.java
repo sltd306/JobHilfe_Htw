@@ -39,7 +39,7 @@ public class AuftragListeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.all_auftrag_liste_appbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Alle Auftrag Liste");
+        getSupportActionBar().setTitle("Auftragsliste");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mMeinAuftragList = (RecyclerView)findViewById(R.id.auftrag_list);

@@ -25,7 +25,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your Status" />
+            android:hint="@string/ihr_status" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -36,7 +36,8 @@
         android:layout_below="@+id/status_input"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="SAVE CHANGES"
+        android:text="@string/aenderungen_speichern"
+        android:textAllCaps="true"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

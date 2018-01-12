@@ -39,7 +39,7 @@ public class EditAuftragActivity extends AppCompatActivity {
 
         mToolBar = (Toolbar)findViewById(R.id.auftrag_bewerben_edit_appbar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Auftrag Edit");
+        getSupportActionBar().setTitle("Auftrag bearbeiten");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final String auftrag_id = getIntent().getStringExtra("auftrag_id");

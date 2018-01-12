@@ -32,7 +32,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Display Name" />
+            android:hint="@string/benutzername" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -49,7 +49,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +67,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/kennwort"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +82,7 @@
         android:backgroundTint="@color/btnSignActive"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="Create Account"
+        android:text="@string/konto_erstellen"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_password" />
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
-        android:text="Create a New Account"
+        android:text="@string/titel_konto_erstellen"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

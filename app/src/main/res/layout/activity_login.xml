@@ -28,7 +28,8 @@
         android:backgroundTint="@color/colorPrimary"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="LOGIN"
+        android:text="@string/einloggen"
+        android:textAllCaps="true"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
-        android:text="Login to your Account"
+        android:text="@string/konto_anmelden"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +61,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your Email"
+            android:hint="@string/ihre_email"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +79,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/kennwort"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 

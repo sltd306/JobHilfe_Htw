@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/main_settings_btn"
-        android:title="Account Settings" />
+        android:title="Profil" />
     <item
         android:id="@+id/main_auftrag"
         android:title="Auftrag Erstellen" />
     <item
         android:id="@+id/main_auftrag_liste"
-        android:title="Auftrag Liste" />
+        android:title="Auftragsliste" />
     <item
         android:id="@+id/main_logout_btn"
         android:title="Abmelden" />

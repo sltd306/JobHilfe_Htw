@@ -89,7 +89,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
         mToolBar = (Toolbar)findViewById(R.id.auftrag_bewerben_appbar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Auftrag Bewerbung");
+        getSupportActionBar().setTitle("Auftrag");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mBewerbung = (Button)findViewById(R.id.auftrag_bewerben_btn);
@@ -265,7 +265,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                                         if (req_type.equals("sent_requeset")){
                                             mBewerben_stats = "req_sent";
-                                            mBewerbung.setText("Cancel Bewerbung Request");
+                                            mBewerbung.setText("Bewerbung zurückziehen");
 
                                             mCancenRequest.setVisibility(View.INVISIBLE);
                                             mCancenRequest.setEnabled(false);
@@ -337,7 +337,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                             } else {
 
                                 mBewerben_stats = "req_sent";
-                                mBewerbung.setText("Cancel Friend Request");
+                                mBewerbung.setText("Bewerbung zurückziehen");
 
                             }
 
@@ -372,7 +372,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                     });
 
                                     mBewerben_stats = "not_bewerben";
-                                    mBewerbung.setText("Send Bewerbung Request");
+                                    mBewerbung.setText("Bewerben");
                                     mBewerbung.setEnabled(true);
                                     mCancenRequest.setVisibility(View.INVISIBLE);
                                     mCancenRequest.setEnabled(false);

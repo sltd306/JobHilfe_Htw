@@ -40,7 +40,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
 
         mToolBar = (Toolbar)findViewById(R.id.profile_edit_appbar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("User Profile Edit");
+        getSupportActionBar().setTitle("Profil bearbeiten");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();

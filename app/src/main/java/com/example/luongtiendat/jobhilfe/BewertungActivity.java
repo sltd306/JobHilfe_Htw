@@ -91,11 +91,11 @@ public class BewertungActivity extends AppCompatActivity {
 
        if (mUserId.equals(arbeit_geber)){
            mUserId = arbeit_nehmer;
-           mTexview.setText("Bitte Geben Sie Bewertung für :" + arbeit_nehmer_name);
+           mTexview.setText("Bitte Geben Sie Bewertung für :  " + arbeit_nehmer_name);
            mStatus= "4";
        }else {
            mUserId = arbeit_geber;
-           mTexview.setText("Bitte Geben Sie Bewertung für :" + arbeit_geber_name);
+           mTexview.setText("Bitte Geben Sie Bewertung für :  " + arbeit_geber_name);
            mStatus= "5";
        }
 
@@ -161,7 +161,7 @@ public class BewertungActivity extends AppCompatActivity {
                        @Override
                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                            if (databaseError == null){
-                               Toast.makeText(BewertungActivity.this,"Bewertung Abgeben 1!!!",Toast.LENGTH_LONG).show();
+                               Toast.makeText(BewertungActivity.this,"Success!!!",Toast.LENGTH_LONG).show();
                            }
                            else {
 

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/auftrag_detail_backgound"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/auftrag_view_id"
@@ -12,27 +13,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="21dp"
         android:text="Auftrag_Titel" />
 
     <TextView
         android:id="@+id/auftrag_view_arbeit_ort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/auftrag_view_id"
         android:layout_alignStart="@+id/auftrag_view_id"
         android:layout_below="@+id/auftrag_view_id"
-        android:layout_margin="10dp"
-        android:layout_marginTop="22dp"
-        android:text="Arbeitsort" />
+        android:layout_marginTop="33dp"
+        android:text="arbeit_ort" />
 
     <TextView
-        android:id="@+id/auftrag_view_status"
+        android:id="@+id/auftrag_view_datum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/auftrag_view_arbeit_ort"
         android:layout_alignBottom="@+id/auftrag_view_arbeit_ort"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="46dp"
-        android:text="Status" />
+        android:layout_marginEnd="39dp"
+        android:text="datum" />
+
 </RelativeLayout>

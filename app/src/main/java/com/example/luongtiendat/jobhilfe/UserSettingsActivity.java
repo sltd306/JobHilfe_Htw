@@ -211,7 +211,7 @@ public class UserSettingsActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
 
-                                                    Toast.makeText(UserSettingsActivity.this,"Success Uploading",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(UserSettingsActivity.this,"Photo Change",Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         });

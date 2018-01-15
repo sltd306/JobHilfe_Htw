@@ -97,7 +97,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             mDialog.dismiss();
-                            Toast.makeText(UserProfileEditActivity.this, "Update Successfully! ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserProfileEditActivity.this, "Update Successful !!! ", Toast.LENGTH_SHORT).show();
 
                         }else
                         {

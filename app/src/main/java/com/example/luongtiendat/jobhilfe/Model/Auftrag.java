@@ -14,11 +14,12 @@ public class Auftrag {
     private String arbeit_zeit;
     private String vergutung;
     private String status;
+    private String datum;
 
     public Auftrag() {
     }
 
-    public Auftrag(String titel, String arbeitgerber, String stellen_beschreibung, String arbeit_ort, String beginn_tatigkeit, String arbeit_zeit, String vergutung, String status) {
+    public Auftrag(String titel, String arbeitgerber, String stellen_beschreibung, String arbeit_ort, String beginn_tatigkeit, String arbeit_zeit, String vergutung, String status, String datum) {
         this.titel = titel;
         this.arbeitgerber = arbeitgerber;
         this.stellen_beschreibung = stellen_beschreibung;
@@ -27,6 +28,7 @@ public class Auftrag {
         this.arbeit_zeit = arbeit_zeit;
         this.vergutung = vergutung;
         this.status = status;
+        this.datum = datum;
     }
 
     public String getTitel() {
@@ -91,5 +93,13 @@ public class Auftrag {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDatum() {
+        return datum;
+    }
+
+    public void setDatum(String datum) {
+        this.datum = datum;
     }
 }

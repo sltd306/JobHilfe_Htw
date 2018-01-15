@@ -1,5 +1,6 @@
 package com.example.luongtiendat.jobhilfe;
 
+import android.icu.text.DateFormat;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -64,9 +66,9 @@ public class AuftragErstellenActivity extends AppCompatActivity {
             final @SuppressWarnings("VisibleForTests")String vergutung = mVergutung.getEditText().getText().toString();
             final @SuppressWarnings("VisibleForTests")String beginn = mBeginn.getEditText().getText().toString();
 
-            if(!TextUtils.isEmpty(titel) && !TextUtils.isEmpty(stellenBeschreibung) &&
-                    !TextUtils.isEmpty(arbeitZeit) && !TextUtils.isEmpty(arbeitOrt)
-                    &&  !TextUtils.isEmpty(vergutung) && !TextUtils.isEmpty(beginn)){
+            if(!TextUtils.isEmpty(titel) || !TextUtils.isEmpty(stellenBeschreibung) ||
+                    !TextUtils.isEmpty(arbeitZeit) || !TextUtils.isEmpty(arbeitOrt)
+                    ||  !TextUtils.isEmpty(vergutung) || !TextUtils.isEmpty(beginn)){
                 auftragErstellen(titel,stellenBeschreibung,arbeitZeit,arbeitOrt,vergutung,beginn);
                 finish();
 
@@ -87,6 +89,8 @@ public class AuftragErstellenActivity extends AppCompatActivity {
 
         mAuftragDatabase = FirebaseDatabase.getInstance().getReference().child("Auftrags");
 
+        final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
+
         HashMap<String,String> auftragMap = new HashMap<>();
         auftragMap.put("titel",titel);
         auftragMap.put("stellen_beschreibung",stellenBeschreibung);
@@ -96,7 +100,8 @@ public class AuftragErstellenActivity extends AppCompatActivity {
         auftragMap.put("beginn",beginn);
         auftragMap.put("userId",current_uid);
         auftragMap.put("mUser","default");
-        auftragMap.put("status","default");
+        auftragMap.put("status","0");
+        auftragMap.put("datum",currentDate);
 
         String auftrag_id = random();
 

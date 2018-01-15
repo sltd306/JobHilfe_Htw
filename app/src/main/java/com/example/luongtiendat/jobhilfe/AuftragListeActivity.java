@@ -67,6 +67,7 @@ public class AuftragListeActivity extends AppCompatActivity {
 
                 viewHolder.setTitel(model.getTitel());
                 viewHolder.setArbeitOrt(model.getArbeit_ort());
+                viewHolder.setDatum(model.getDatum());
 
                 final String auftrag_id = getRef(position).getKey();
 
@@ -120,7 +121,7 @@ public class AuftragListeActivity extends AppCompatActivity {
         }
 
         public  void setDatum (String datum){
-            TextView auftragDatumView = mView.findViewById(R.id.auftrag_view_status);
+            TextView auftragDatumView = mView.findViewById(R.id.auftrag_view_datum);
             auftragDatumView.setText(datum);
         }
         public  void setArbeitOrt (String arbeit_ort){
@@ -132,5 +133,7 @@ public class AuftragListeActivity extends AppCompatActivity {
             relativeLayout.setBackgroundResource(R.drawable.auftrag_detail_backgound);
             relativeLayout.setBackgroundColor(color);
         }
+
+
     }
 }

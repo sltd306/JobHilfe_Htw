@@ -146,7 +146,7 @@ public class BewertungActivity extends AppCompatActivity {
 
                    HashMap<String, String> notificationData = new HashMap<>();
                    notificationData.put("from", mName);
-                   notificationData.put("type", "Eine Bewertung abgegeben");
+                   notificationData.put("type", "Eine Bewertung wurde abgegeben");
 
                    Map bewertungMap = new HashMap();
                    bewertungMap.put("Users/" + mUserId + "/bewertung_count","1");
@@ -161,7 +161,7 @@ public class BewertungActivity extends AppCompatActivity {
                        @Override
                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                            if (databaseError == null){
-                               Toast.makeText(BewertungActivity.this,"Success!!!",Toast.LENGTH_LONG).show();
+                               Toast.makeText(BewertungActivity.this,"Bewertung wurde abgegeben!",Toast.LENGTH_LONG).show();
                            }
                            else {
 
@@ -185,7 +185,7 @@ public class BewertungActivity extends AppCompatActivity {
 
                    HashMap<String, String> notificationData = new HashMap<>();
                    notificationData.put("from", mName);
-                   notificationData.put("type", "Eine Bewertung abgegeben");
+                   notificationData.put("type", "Eine Bewertung wurde abgegeben");
 
                    Map bewertungMap = new HashMap();
                    bewertungMap.put("Users/" + mUserId + "/bewertung_count",m2);
@@ -200,7 +200,7 @@ public class BewertungActivity extends AppCompatActivity {
                        @Override
                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                            if (databaseError == null){
-                               Toast.makeText(BewertungActivity.this,"Bewertung Abgeben 2!!!",Toast.LENGTH_LONG).show();
+                               Toast.makeText(BewertungActivity.this,"Bewertung wurde abgegeben!",Toast.LENGTH_LONG).show();
                            }
                            else {
 

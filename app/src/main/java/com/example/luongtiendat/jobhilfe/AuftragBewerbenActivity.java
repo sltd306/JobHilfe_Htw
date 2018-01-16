@@ -208,7 +208,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                                         if(req_type.equals("received_request")){
                                             mBewerben_stats = "req_received";
-                                            mBewerbung.setText("Accept Bewerbung Request");
+                                            mBewerbung.setText("Bewerbung annehmen");
 
                                             mCancenRequest.setVisibility(View.VISIBLE);
                                             mCancenRequest.setEnabled(true);
@@ -220,7 +220,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                                 if (dataSnapshot.hasChild(auftrag_id)){
                                                    // String req_type = dataSnapshot.child(auftrag_id).child("request_type").getValue().toString(); //
                                                     mBewerben_stats = "auftrag_beworben";
-                                                    mBewerbung.setText("Denin this Bewerbung");
+                                                    mBewerbung.setText("Bewerbung ablehnen");
                                                     mBewerbung.setEnabled(true);
 
                                                     mCancenRequest.setVisibility(View.VISIBLE);
@@ -309,7 +309,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                                         if (req_type.equals("sent_requeset")){
                                             mBewerben_stats = "req_sent";
-                                            mBewerbung.setText("Cancel Bewerbung Request");
+                                            mBewerbung.setText("Bewerbung zurückziehen");
 
                                             mCancenRequest.setVisibility(View.INVISIBLE);
                                             mCancenRequest.setEnabled(false);
@@ -319,14 +319,14 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                     }
                                     else if(status_int == 1){
                                             mBewerben_stats = "auftrag_zuruck";
-                                            mBewerbung.setText("Bewerbung zurückzihen");
+                                            mBewerbung.setText("Bewerbung zurückziehen");
                                             mBewerbung.setEnabled(true);
 
                                             mCancenRequest.setVisibility(View.INVISIBLE);
                                             mCancenRequest.setEnabled(false);
                                     }else if (status_int ==4 ){
                                             mBewerben_stats = "bewerten";
-                                            mBewerbung.setText("Bewerten Abgeben");
+                                            mBewerbung.setText("Bewertung Abgeben");
 
                                             mCancenRequest.setVisibility(View.INVISIBLE);
                                             mCancenRequest.setEnabled(false);
@@ -381,7 +381,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                     HashMap<String, String> notificationData = new HashMap<>();
                     notificationData.put("from", mUserName02);
-                    notificationData.put("type", "send request an ihre Auftrag: " + auftrag_id);
+                    notificationData.put("type", "Ihr Auftrag anfragen: " + auftrag_id);
 
                     Map requestMap = new HashMap();
                     requestMap.put("Bewerben_reg/" + mCurrent_User.getUid() + "/" + mUserId + "/"
@@ -407,7 +407,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                             } else {
 
                                 mBewerben_stats = "req_sent";
-                                mBewerbung.setText("Cancel This Request");
+                                mBewerbung.setText("Bewerbung zurückziehen");
 
                             }
 
@@ -433,7 +433,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                                     HashMap<String, String> notificationData = new HashMap<>();
                                     notificationData.put("from", mUserName02);
-                                    notificationData.put("type", "request zurück auf Ihre Auftrag :" + auftrag_id);
+                                    notificationData.put("type", "Eine Bewerbung wurde zurückgezogen :" + auftrag_id);
 
                                     Map requestMap = new HashMap();
                                     requestMap.put("Auftrags/" + auftrag_id + "/" +"mUser","default");
@@ -450,7 +450,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                     });
 
                                     mBewerben_stats = "not_bewerben";
-                                    mBewerbung.setText("Send Bewerbung Request");
+                                    mBewerbung.setText("Bewerben");
                                     mBewerbung.setEnabled(true);
                                     mCancenRequest.setVisibility(View.INVISIBLE);
                                     mCancenRequest.setEnabled(false);
@@ -470,7 +470,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                     HashMap<String, String> notificationData = new HashMap<>();
                     notificationData.put("from", mUserName01);
-                    notificationData.put("type", "accept ihre Bewerben an Auftrag :" + auftrag_id);
+                    notificationData.put("type", "Ihre Bewerbung wurde angenommen :" + auftrag_id);
 
                     Map kontaktMap = new HashMap();
                     kontaktMap.put("Kontakt/" + mCurrent_User.getUid() + "/" + mUserId02 + "/date",currentDate);
@@ -490,7 +490,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                             if (databaseError == null){
                                 mBewerben_stats = "auftrag_beworben";
-                                mBewerbung.setText("Denin this Bewerbung");
+                                mBewerbung.setText("Bewerber ablehnen");
                                 mBewerbung.setEnabled(true);
 
                                 mCancenRequest.setVisibility(View.VISIBLE);
@@ -517,7 +517,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                     HashMap<String, String> notificationData = new HashMap<>();
                     notificationData.put("from", mUserName01);
-                    notificationData.put("type", "denin ihre Bewerben an Auftrag :" + auftrag_id);
+                    notificationData.put("type", "Ihre Bewerbung wurde abgelehnt:" + auftrag_id);
 
                     Map unkonkaktMap = new HashMap();
                     unkonkaktMap.put("Kontakt/" +  mCurrent_User.getUid() + "/" + mUserId02 ,null);
@@ -561,7 +561,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
 
                     HashMap<String, String> notificationData = new HashMap<>();
                     notificationData.put("from", mUserName02);
-                    notificationData.put("type", "bewerben zurück ihre Bewerben an Auftrag :" + auftrag_id);
+                    notificationData.put("type", "Eine Bewerbung wurde zurückgezogen :" + auftrag_id);
 
                     Map unkonkaktMap = new HashMap();
                     unkonkaktMap.put("Kontakt/" +  mCurrent_User.getUid() + "/" + mUserId ,null);
@@ -638,7 +638,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null){
                                 mBewerben_stats = "bewerten";
-                                mBewerbung.setText("Bewerten Abgeben");
+                                mBewerbung.setText("Bewertung Abgeben");
 
                                 mCancenRequest.setVisibility(View.INVISIBLE);
                                 mCancenRequest.setEnabled(false);
@@ -694,7 +694,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                                     });
 
                                     mBewerben_stats = "not_bewerben";
-                                    mBewerbung.setText("Send Bewerbung Request");
+                                    mBewerbung.setText("Bewerben");
                                     mBewerbung.setEnabled(true);
                                     mCancenRequest.setVisibility(View.INVISIBLE);
                                     mCancenRequest.setEnabled(false);
@@ -719,7 +719,7 @@ public class AuftragBewerbenActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError == null){
                                 mBewerben_stats = "bewerten";
-                                mBewerbung.setText("Bewerten Abgeben");
+                                mBewerbung.setText("Bewertung Abgeben");
 
                                 mCancenRequest.setVisibility(View.INVISIBLE);
                                 mCancenRequest.setEnabled(false);

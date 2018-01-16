@@ -46,7 +46,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:background="#aaddddd5"
-            android:text="Sigup"
+            android:text="@string/registrieren"
             android:textColor="@android:color/black" />
 
         <Button
@@ -56,7 +56,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:background="#aaddddd5"
-            android:text="Sigin"
+            android:text="@string/einloggen"
             android:textColor="@android:color/black" />
 
 

@@ -54,7 +54,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ihre Titel" />
+                        android:hint="@string/ihre_titel" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -86,7 +86,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ihre Stellen Beschreibung" />
+                        android:hint="@string/ihre_beschreibung" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -118,7 +118,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ihre Arbeit Ort" />
+                        android:hint="@string/ihre_arbeitsort" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -150,7 +150,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Beginn Arbeit"
+                        android:hint="@string/beginn_arbeit"
                         />
                 </android.support.design.widget.TextInputLayout>
 
@@ -184,7 +184,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ihre Arbeit Zeit"
+                        android:hint="@string/ihre_arbeitszeit"
                         />
                 </android.support.design.widget.TextInputLayout>
 
@@ -218,7 +218,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ihre Vergütung"
+                        android:hint="@string/ihre_verg_tung"
                          />
                 </android.support.design.widget.TextInputLayout>
 
@@ -232,7 +232,7 @@
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="50dp"
                 android:background="@color/btnSignActive"
-                android:text="Auftrag Erstellen"
+                android:text="@string/auftrag_erstellen"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />

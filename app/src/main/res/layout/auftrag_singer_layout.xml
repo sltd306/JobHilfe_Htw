@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="21dp"
-        android:text="Auftrag_Titel" />
+        android:text="@string/auftragstitel" />
 
     <TextView
         android:id="@+id/auftrag_view_arbeit_ort"
@@ -24,7 +24,7 @@
         android:layout_alignStart="@+id/auftrag_view_id"
         android:layout_below="@+id/auftrag_view_id"
         android:layout_marginTop="33dp"
-        android:text="arbeit_ort" />
+        android:text="@string/arbeitsort" />
 
     <TextView
         android:id="@+id/auftrag_view_datum"
@@ -34,6 +34,6 @@
         android:layout_alignBottom="@+id/auftrag_view_arbeit_ort"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="39dp"
-        android:text="datum" />
+        android:text="@string/datum" />
 
 </RelativeLayout>

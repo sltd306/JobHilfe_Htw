@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="23dp"
         android:layout_marginTop="14dp"
-        android:text="From : " />
+        android:text="@string/von" />
 
     <TextView
         android:id="@+id/notification_name"
@@ -20,7 +20,7 @@
         android:layout_alignTop="@+id/textView3"
         android:layout_marginStart="22dp"
         android:layout_toEndOf="@+id/textView3"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/notification_text"
@@ -30,5 +30,5 @@
         android:layout_below="@+id/textView3"
         android:layout_margin="10dp"
         android:layout_marginTop="19dp"
-        android:text="Notification Text" />
+        android:text="@string/benachrichtigung" />
 </RelativeLayout>

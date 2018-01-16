@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="Your Name" />
+            android:hint="@string/ihr_name" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -48,7 +48,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:hint="Your Email"
+            android:hint="@string/ihre_email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -71,7 +71,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:hint="Your Phone"
+            android:hint="@string/ihre_telefonnummer"
             android:inputType="phone" />
     </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="157dp"
         android:background="@color/btnSignActive"
-        android:text="Save change"
+        android:text="@string/aenderungen_speichern"
         android:textColor="@android:color/black" />
 
 </RelativeLayout>

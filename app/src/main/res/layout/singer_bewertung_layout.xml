@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="26dp"
         android:layout_marginTop="29dp"
-        android:text="Bewertung von :" />
+        android:text="@string/bewertung_von" />
 
     <TextView
         android:id="@+id/bewertung_name"
@@ -23,7 +23,7 @@
         android:layout_alignTop="@+id/textView6"
         android:layout_marginStart="70dp"
         android:layout_toEndOf="@+id/textView6"
-        android:text="Name"
+        android:text="@string/name"
         android:textStyle="bold" />
 
     <RatingBar
@@ -45,7 +45,7 @@
         android:layout_margin="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="28dp"
-        android:text="Bewertung Text"
+        android:text="@string/bewertung_text"
         android:textSize="18sp"
         android:textStyle="bold" />
 

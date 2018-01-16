@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:hint="Auftrag Titel" />
+                    android:hint="@string/auftragstitel" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -63,7 +63,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:hint="Stellen Beschreibung"
+                    android:hint="@string/stellenbeschreibung"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +86,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:hint="Arbeit Ort"
+                    android:hint="@string/arbeitsort"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -109,7 +109,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:hint="Arbeit Zeit"
+                    android:hint="@string/arbeitszeit"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -132,7 +132,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:hint="Vergutung"
+                    android:hint="@string/vergütung"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43dp"
                 android:background="@color/btnSignActive"
-                android:text="Save change"
+                android:text="@string/aenderungen_speichern"
                 android:textColor="@android:color/black"
                 android:layout_below="@+id/auftrag_vergutung_edit"
                 android:layout_centerHorizontal="true" />
